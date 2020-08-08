@@ -1,16 +1,8 @@
 import React from "react";
-
-import "./App.css";
+import Wrapper from "./components/Wrapper";
 
 function App() {
-  return (
-    <div>
-      <header>
-        <h1>Test Deploy</h1>
-        <p>Testing!!!!</p>
-      </header>
-    </div>
-  );
+  return <Wrapper />;
 }
 
 export default App;
