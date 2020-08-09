@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Employee from "./Employee";
-import Button from "./Button";
+//import Button from "./Button";
 //import API from "../utils/API";
 import employees from "../employee.json";
 
 class Wrapper extends Component {
   state = {
     employees,
-    order: "descending",
+    order: "ascending",
   };
 
   // componentDidMount() {
@@ -21,6 +21,14 @@ class Wrapper extends Component {
   //     .then((res) => this.setState({ result: res.data.results }))
   //     .catch((err) => console.log(err));
   // };
+
+  handleSortUp = () => {
+    this.setState({ order: "ascending" });
+  };
+
+  handleSortDown = () => {
+    this.setState({ order: "descending" });
+  };
 
   renderEmployee = () => {
     if (this.state.order === "ascending") {
@@ -39,6 +47,7 @@ class Wrapper extends Component {
         })
         .map((employee) => (
           <Employee
+            image={employee.picture.large}
             name={employee.name.first + " " + employee.name.last}
             phone={employee.phone}
             email={employee.email}
@@ -60,6 +69,7 @@ class Wrapper extends Component {
         })
         .map((employee) => (
           <Employee
+            image={employee.picture.large}
             name={employee.name.first + " " + employee.name.last}
             phone={employee.phone}
             email={employee.email}
@@ -72,7 +82,20 @@ class Wrapper extends Component {
     return (
       <div>
         <Header />
-        <Button order={this.state.order} />
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={this.handleSortUp}
+        >
+          Sort A-Z
+        </button>
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={this.handleSortDown}
+        >
+          Sort Z-A
+        </button>
         {this.renderEmployee()}
       </div>
     );
