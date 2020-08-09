@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Employee from "./Employee";
-import API from "../utils/API";
+//import API from "../utils/API";
+import employees from "../employee.json";
 
 class Wrapper extends Component {
   state = {
-    result: {},
+    employees,
   };
 
-  componentDidMount() {
-    this.searchEmployees("15");
-  }
+  // componentDidMount() {
+  //   this.searchEmployees("15");
+  // }
 
-  searchEmployees = (query) => {
-    API.search(query)
-      .then(console.log(query))
-      .then((res) => console.log(res.data.results));
+  // searchEmployees = (query) => {
+  //   API.search(query)
+  //     .then((res) => console.log(res.data.results))
+  //     .then((res) => this.setState({ result: res.data.results }))
+  //     .catch((err) => console.log(err));
+  // };
 
-    // .catch((err) => console.log(err));
-  };
-
-  renderEmployee = () => {
-    if (this.state.result.result) {
-      return <h3>It Worked</h3>;
-    }
-    return <h3>No Results to Display</h3>;
-  };
+  // renderEmployee = () => {
+  //   if (this.state.result) {
+  //     return <Employee email={this.state.result[0].email} />;
+  //   }
+  //   return <h3>No Results to Display</h3>;
+  // };
 
   render() {
     return (
@@ -34,14 +34,13 @@ class Wrapper extends Component {
         <button type="button" class="btn btn-success">
           Sort Button
         </button>
-        <Employee
-          name="John"
-          phone="8322234232"
-          job="finance"
-          email="john@email.com"
-        />
-        {this.renderEmployee()}
-        <Employee />
+        {this.state.employees.map((employee) => (
+          <Employee
+            name={employee.name.first + " " + employee.name.last}
+            phone={employee.phone}
+            email={employee.email}
+          />
+        ))}
       </div>
     );
   }
