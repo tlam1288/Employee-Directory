@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Header from "./Header";
+//import Header from "./Header";
 import Employee from "./Employee";
-//import Button from "./Button";
+import Button from "./Button";
+//import SearchInput from "./SearchInput";
 //import API from "../utils/API";
 import employees from "../employee.json";
 
@@ -28,6 +29,10 @@ class Wrapper extends Component {
 
   handleSortDown = () => {
     this.setState({ order: "descending" });
+  };
+
+  showPhoneNumber = () => {
+    this.setState({ order: "", phone: "show" });
   };
 
   renderEmployee = () => {
@@ -78,24 +83,24 @@ class Wrapper extends Component {
     }
   };
 
+  // renderPhoneOnly = () => {
+  //   if (this.state.phone === "show") {
+  //     return employees.map((employee) => (
+  //       <Employee
+  //         image={employee.picture.large}
+  //         name={employee.name.first + " " + employee.name.last}
+  //         phone={employee.phone}
+  //       />
+  //     ));
+  //   }
+  // };
+
   render() {
     return (
       <div>
-        <Header />
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={this.handleSortUp}
-        >
-          Sort A-Z
-        </button>
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={this.handleSortDown}
-        >
-          Sort Z-A
-        </button>
+        <Button sort={this.handleSortUp} children="Sort A-Z" />
+        <Button sort={this.handleSortDown} children="Sort A-Z" />
+
         {this.renderEmployee()}
       </div>
     );
