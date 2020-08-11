@@ -4,7 +4,7 @@ function Button(props) {
   return (
     <button
       type="button"
-      class="btn btn-success mx-2"
+      className="btn btn-success mx-2"
       onClick={() => props.sort()}
     >
       {props.children}
